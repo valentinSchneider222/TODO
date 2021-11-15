@@ -1,0 +1,31 @@
+:host {
+  display: flex;
+  margin: 5px;
+}
+
+mat-checkbox {
+  margin-right: 10px;
+}
+
+input {
+  background-color: transparent;
+  border: none;
+  border-bottom: solid 1px black;
+  width: 92%;
+  margin-right: 15px;
+  &:focus {
+    border: none;
+    border-bottom: solid 1px #FFBE0B;
+    outline: none;
+  }
+  &.done {
+    text-decoration-line: line-through;
+  }
+}
+
+button {
+  height: 24px;
+  width: 24px;
+  padding: 0;
+  background-color: transparent;
+}

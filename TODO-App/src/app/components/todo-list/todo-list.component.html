@@ -1,0 +1,10 @@
+<mat-card>
+    <mat-card-title class="group">
+    <input #titleField type="text" [value]="title" (input)="titleChanged()"/>
+    </mat-card-title>
+    <app-todo-entity *ngFor="let entity of entities" [state]="entity.done" [text]="entity.text" [id]="entity.id"
+        [groupId]="groupId"></app-todo-entity>
+    <mat-card-actions>
+        <button (click)="addTask()">+</button>
+    </mat-card-actions>
+</mat-card>

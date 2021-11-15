@@ -1,0 +1,5 @@
+<mat-checkbox [checked]="state" (change)="stateChange($event)"></mat-checkbox>
+<input #textField [ngClass]="{'done': !!state}" [disabled]="state" type="text" [value]="text" (input)="textChanged()" />
+<button mat-mini-fab color="primary" (click)="removeEntity()">
+    <img src="./assets/delete.svg" height="20px" width="20px">
+</button>

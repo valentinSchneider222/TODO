@@ -1,0 +1,7 @@
+<button id="addNewGroup" (click)="addGroup()">+</button>
+
+<app-todo-list *ngFor="let group of todoGroups" 
+[entities]="group.entities" 
+[title]="group.title"
+[groupId]="group.id"
+></app-todo-list>
