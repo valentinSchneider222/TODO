@@ -1,7 +1,7 @@
 import { Task } from "./task";
 
 export interface TodoGroup {
-    entities: Task[];
+    tasks: Task[];
     title: string;
-    id: string;
+    _id?: string;
 }
