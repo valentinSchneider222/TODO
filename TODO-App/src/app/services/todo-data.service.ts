@@ -12,7 +12,6 @@ export class TodoDataService {
 
   public data: BehaviorSubject<TodoGroup[]> = new BehaviorSubject<TodoGroup[]>([]);
 
-
   constructor(private http: HttpClient) {
     this.getTodos();
   }
@@ -62,8 +61,8 @@ export class TodoDataService {
   }
 
   public removeTask(groupdId: string, taskId: string) {
-    firstValueFrom(this.http.delete<string>(environment.backendUrl + `/removeTask?id=${taskId}`))
-      .then(data => {
+    firstValueFrom(this.http.delete<any>(environment.backendUrl + `/removeTask?id=${taskId}`))
+      .then(() => {
         const existingData = this.data.value;
         const groupIndex = existingData.findIndex(x => x._id === groupdId);
         const taskIndex = existingData[groupIndex].tasks.findIndex(x => x._id === taskId);
@@ -71,6 +70,17 @@ export class TodoDataService {
         this.data.next(existingData);
       })
       .catch(err => console.error(err));
+  }
+
+  public removeGroup(groupId: string) {
+    firstValueFrom(this.http.delete<any>(environment.backendUrl + `/removeGroup?id=${groupId}`))
+    .then(() => {
+      const existingData = this.data.value;
+      const groupIndex = existingData.findIndex(x => x._id === groupId);
+      existingData.splice(groupIndex, 1);
+      this.data.next(existingData);
+    })
+    .catch(err => console.error(err));
   }
 
   private getTodos() {

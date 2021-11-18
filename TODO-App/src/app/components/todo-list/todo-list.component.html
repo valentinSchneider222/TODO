@@ -1,10 +1,13 @@
 <mat-card>
     <mat-card-title class="group">
-    <input #titleField type="text" [value]="title" (input)="titleChanged()"/>
+        <input #titleField type="text" [value]="title" (input)="titleChanged()" />
     </mat-card-title>
     <app-todo-entity *ngFor="let entity of entities" [state]="entity.done" [text]="entity.title" [id]="entity._id"
         [groupId]="groupId"></app-todo-entity>
     <mat-card-actions>
         <button (click)="addTask()">+</button>
+        <button class="removeGroup" (click)="removeGroup()">
+            <img src="./assets/delete.svg" height="25px" width="25px">
+        </button>
     </mat-card-actions>
 </mat-card>

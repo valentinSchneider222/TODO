@@ -45,7 +45,7 @@ app.get('/todos', async function (req, res) {
 app.put('/group', async (req, res) => {
   if (req.body && req.body.hasOwnProperty('title')) {
     if (req.body.hasOwnProperty('id') && req.body.id !== undefined && req.body.id !== '') {
-      const existingGroup = await group.findOne({'_id': req.body.id});
+      const existingGroup = await group.findOne({ '_id': req.body.id });
       if (!!existingGroup) {
         existingGroup.title = req.body.title;
         existingGroup.save();
@@ -77,7 +77,7 @@ app.put('/task', async (req, res) => {
       } else {
         res.status(400).send('Could not find existing group');
       }
-    } else if (req.body.hasOwnProperty('taskId') && !req.body.hasOwnProperty('groupId'))  {
+    } else if (req.body.hasOwnProperty('taskId') && !req.body.hasOwnProperty('groupId')) {
       const existingTask = await task.findOne({ '_id': req.body.taskId });
       if (!!existingTask) {
         existingTask.title = req.body.text;
@@ -102,6 +102,11 @@ app.delete('/removeTask', async (req, res) => {
     const existingTask = await task.findOne({ '_id': req.query.id });
     if (existingTask) {
       await task.deleteOne({ '_id': req.query.id });
+      const existingGroup = await group.findOne({ tasks: `${req.query.id}` });
+      if (existingGroup) {
+        existingGroup.tasks.splice(existingGroup.tasks.findIndex(x => x.toString().includes(req.query.id), 1));
+        await existingGroup.save();
+      }
       res.status(200).send();
     } else {
       res.status(404).send('Task to delete could not be found');
@@ -111,15 +116,26 @@ app.delete('/removeTask', async (req, res) => {
   }
 });
 // delete group permanent by passing the id as queryParameter
-app.delete('/removeGroup', (req, res) => {
-  const idToRemove = req.query.id;
-  res.send(idToRemove);
+app.delete('/removeGroup', async (req, res) => {
+  if (req.query?.id) {
+    const existingGroup = await group.findOne({ '_id': req.query.id });
+    if (existingGroup) {
+      existingGroup.tasks.forEach(async (x) => {
+        await task.deleteOne({ '_id': x._id });
+      });
+      await group.deleteOne({ '_id': req.query.id });
+      res.status(200).send();
+    } else {
+      res.status(404).send('Group to delete could not be found');
+    }
+  } else {
+    res.status(400).send('No id could be found in the query');
+  }
 });
 //#endregion delete
 
 const expressServer = app.listen(3000);
 
 process.on('SIGTERM', () => {
-  // dbClient.close();
   expressServer.close(() => { debug('HTTP server closed') });
 });

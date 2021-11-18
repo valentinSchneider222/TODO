@@ -33,6 +33,10 @@ export class TodoListComponent {
     }
   }
 
+  public removeGroup() {
+    this.todoData.removeGroup(`${this.groupId}`);
+  }
+
   private sendGroupRename() {
     this.inputToSendDelay = setTimeout(() => {
       this.todoData.renameGroup(this.title, `${this.groupId}`);
