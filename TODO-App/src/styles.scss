@@ -11,7 +11,7 @@ body {
   color: #4CC9F0;
 }
 app-root {
-  background-color: #FFBE0B;
+  background-color: #69f0ae;
   box-sizing: border-box;
   display: block;
   height: 100%;
@@ -20,3 +20,6 @@ app-root {
   padding: 50px;
   overflow-y: auto;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

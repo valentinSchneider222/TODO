@@ -1,12 +1,18 @@
 #addNewGroup {
     background-color: #3A86FFD0;
     border-radius: 25px;
-    border: none;
-    color: #FFBE0B;
+    border: solid 2px transparent;
+    color: #69f0ae;
     font-size: 45px;
     height: 50px;
     margin-bottom: 40px;
     padding: 0;
     line-height: 45px;
-    width: 50px;
+    width: 300px;
+    &:active{
+        border-color: #3A86FFD0;
+        color: #3A86FFD0;
+        background-color: #69f0ae;
+
+    }
 }

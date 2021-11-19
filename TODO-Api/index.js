@@ -36,7 +36,7 @@ app.get('/', async function (req, res) {
 });
 // get all groups with their tasks
 app.get('/todos', async function (req, res) {
-  res.send(await group.find().populate('tasks'));
+  res.send((await group.find().populate('tasks')).reverse());
 });
 //#endregion get
 //#region put

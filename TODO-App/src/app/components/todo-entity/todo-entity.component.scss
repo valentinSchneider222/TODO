@@ -15,7 +15,7 @@ input {
   margin-right: 15px;
   &:focus {
     border: none;
-    border-bottom: solid 1px #FFBE0B;
+    border-bottom: solid 1px #69f0ae;
     outline: none;
   }
   &.done {
@@ -27,5 +27,14 @@ button {
   height: 24px;
   width: 24px;
   padding: 0;
-  background-color: transparent;
+  background-color: #69f0ae;
+  border-radius: 24px;
+  border: solid 1px #3a86ffd0;
+  img {
+    -webkit-user-drag: none;
+  }
+  &:active {
+    background-color: transparent;
+    border-color: #69f0ae;
+  }
 }

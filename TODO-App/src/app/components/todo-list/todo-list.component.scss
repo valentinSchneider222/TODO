@@ -2,20 +2,34 @@
   display: block;
   width: 100%;
   margin-bottom: 45px;
+  mat-card-actions {
+    display: flex;
+    justify-content: space-between;
+  }
 }
 mat-card {
-  background-color: #3A86FFD0;
+  background-color: #3a86ffd0;
   button {
     height: 30px;
     width: 30px;
-    border: none;
+    border: solid 2px #69f0ae;
     border-radius: 30px;
     font-size: 25px;
     line-height: 25px;
-    background-color: #FFBE0B;
-    color: #3A86FF;
-    &.removeGroup {
-      padding: 0;
+    background-color: #69f0ae;
+    color: #3a86ff;
+    &:active {
+      color: #69f0ae;
+      background-color: transparent;
+      border-color: #69f0ae;
+    }
+    &.removeGroup > img {
+      position: relative;
+      left: -4px;
+      -webkit-user-drag: none;
+    }
+    &.addTask {
+      width: 150px;
     }
   }
   input {
@@ -28,7 +42,7 @@ mat-card {
     font-size: 30px;
     &:focus {
       border: none;
-      border-bottom: solid 1px #FFBE0B;
+      border-bottom: solid 1px #69f0ae;
       outline: none;
     }
   }

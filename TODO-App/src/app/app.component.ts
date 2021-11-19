@@ -16,7 +16,6 @@ export class AppComponent {
     this.todoData.data.pipe(
       filter(x => !!x)
     ).subscribe(x => {
-      console.log(x);
       this.todoGroups = x;
     });
   }

@@ -1,0 +1,26 @@
+version: "3"
+services: 
+  todo-api:
+    build: ./TODO-Api
+    ports:
+      - 3000:3000
+    depends_on:
+       - mongodb
+  todo-app:
+    build: ./TODO-App
+    ports:
+      - 80:80
+    depends_on:
+     - todo-api
+  mongodb:
+    image: mongo
+    container_name: mongo-todo-db
+    environment:
+    - PUID=1000
+    - PGID=1000
+    - MONGO_INITDB_DATABASE=TODO-DB
+    volumes:
+      - db:/data/db
+    ports:
+      - 27017:27017
+    restart: unless-stopped

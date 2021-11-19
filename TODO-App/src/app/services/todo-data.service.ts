@@ -20,7 +20,7 @@ export class TodoDataService {
     firstValueFrom(this.http.put<TodoGroup>(environment.backendUrl + '/group', { title: groupName }))
       .then(data => {
         const newStuff = this.data.value;
-        newStuff.push(data);
+        newStuff.unshift(data);
         this.data.next(newStuff);
       })
       .catch(err => console.error(err));
@@ -54,7 +54,8 @@ export class TodoDataService {
         const existingData = this.data.value;
         const groupIndex = existingData.findIndex(x => x._id === groupId);
         const taskIndex = existingData[groupIndex].tasks.findIndex(x => x._id === data._id);
-        existingData[groupIndex].tasks[taskIndex] = data;
+        existingData[groupIndex].tasks[taskIndex].done = data.done;
+        existingData[groupIndex].tasks[taskIndex].title = data.title;
         this.data.next(existingData);
       })
       .catch(err => console.error(err));
