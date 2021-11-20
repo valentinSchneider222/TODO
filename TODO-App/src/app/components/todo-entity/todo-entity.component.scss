@@ -6,16 +6,27 @@
 mat-checkbox {
   margin-right: 10px;
 }
+::ng-deep {
+  .mat-checkbox-ripple .mat-ripple-element,
+  .mat-checkbox-checked.mat-accent .mat-checkbox-background {
+    background-color: #67adbe !important;
+  }
+  .mat-checkbox-checkmark-path {
+    stroke: #dfe0e0 !important;
+    }
+}
 
 input {
   background-color: transparent;
   border: none;
-  border-bottom: solid 1px black;
+  border-bottom: solid 1px #95c9d5;
   width: 92%;
   margin-right: 15px;
+  font-size: 20px;
+  color: #dfe0e0;
   &:focus {
     border: none;
-    border-bottom: solid 1px #69f0ae;
+    border-bottom: solid 1px #95c9d5;
     outline: none;
   }
   &.done {
@@ -27,14 +38,14 @@ button {
   height: 24px;
   width: 24px;
   padding: 0;
-  background-color: #69f0ae;
+  background-color: #95c9d5;
   border-radius: 24px;
-  border: solid 1px #3a86ffd0;
+  border: solid 1px #00728c;
   img {
     -webkit-user-drag: none;
   }
   &:active {
     background-color: transparent;
-    border-color: #69f0ae;
+    border-color: #95c9d5;
   }
 }

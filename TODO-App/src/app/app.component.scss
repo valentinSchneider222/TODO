@@ -1,8 +1,8 @@
 #addNewGroup {
-    background-color: #3A86FFD0;
+    background-color: #00728c;
     border-radius: 25px;
     border: solid 2px transparent;
-    color: #69f0ae;
+    color: #95c9d5;
     font-size: 45px;
     height: 50px;
     margin-bottom: 40px;
@@ -10,9 +10,9 @@
     line-height: 45px;
     width: 300px;
     &:active{
-        border-color: #3A86FFD0;
-        color: #3A86FFD0;
-        background-color: #69f0ae;
+        border-color: #00728c;
+        color: #00728c;
+        background-color: #95c9d5;
 
     }
 }

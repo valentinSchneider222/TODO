@@ -8,42 +8,48 @@
   }
 }
 mat-card {
-  background-color: #3a86ffd0;
+  background-color: #00728c;
   button {
     height: 30px;
     width: 30px;
-    border: solid 2px #69f0ae;
+    border: solid 2px #95c9d5;
     border-radius: 30px;
     font-size: 25px;
     line-height: 25px;
-    background-color: #69f0ae;
-    color: #3a86ff;
+    background-color: #95c9d5;
+    color: #00728c;
     &:active {
-      color: #69f0ae;
+      color: #95c9d5;
       background-color: transparent;
-      border-color: #69f0ae;
+      border-color: #95c9d5;
     }
-    &.removeGroup > img {
-      position: relative;
-      left: -4px;
-      -webkit-user-drag: none;
+    &.removeGroup  {
+      margin-right: 22px;
+      & > img {
+        position: relative;
+        left: -4px;
+        -webkit-user-drag: none;
+      }
     }
     &.addTask {
-      width: 150px;
+      width: 160px;
     }
   }
-  input {
-    background-color: transparent;
-    border: none;
-    border-bottom: solid 1px black;
-    width: 100%;
-    height: 35px;
-    line-height: 35px;
-    font-size: 30px;
-    &:focus {
+  mat-card-title {
+    padding-right: 60px;
+    input {
+      background-color: transparent;
       border: none;
-      border-bottom: solid 1px #69f0ae;
-      outline: none;
+      border-bottom: solid 1px #95c9d5;
+      width: 100%;
+      height: 35px;
+      line-height: 35px;
+      font-size: 30px;
+      &:focus {
+        border: none;
+        border-bottom: solid 1px #95c9d5;
+        outline: none;
+      }
     }
   }
 }
