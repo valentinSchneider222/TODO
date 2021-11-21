@@ -23,15 +23,10 @@ const groupSchema = new mongoose.Schema({
 });
 
 async function main() {
-  console.log('connecting to mongodb');
   await mongoose.connect('mongodb://mongodb:27017', {
-    'user': 'dbuser',
-    'pass': 'thisissecret',
-    'authSource': 'Todo',
     'dbName': 'Todo',
     'autoCreate': true,
   });
-  console.log('connected to mongodb');
   task = mongoose.model('Task', taskSchema);
   group = mongoose.model('Group', groupSchema);
 }
