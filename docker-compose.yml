@@ -1,5 +1,20 @@
 version: "3"
-services: 
+services:
+  mongodb:
+    image: mongo
+    container_name: 'mongo-todo-db'
+    environment:
+    - PUID=1000
+    - PGID=1000
+    - MONGO_INITDB_DATABASE=Todo
+    - MONGO_INITDB_ROOT_USERNAME=dbuser
+    - MONGO_INITDB_ROOT_PASSWORD=thisissecret
+    volumes:
+      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+      - ./mongo-volume:/data/db
+    ports:
+      - 27017:27017
+    restart: unless-stopped
   todo-api:
     build: ./TODO-Api
     ports:
@@ -12,15 +27,3 @@ services:
       - 80:80
     depends_on:
      - todo-api
-  mongodb:
-    image: mongo
-    container_name: mongo-todo-db
-    environment:
-    - PUID=1000
-    - PGID=1000
-    - MONGO_INITDB_DATABASE=TODO-DB
-    volumes:
-      - db:/data/db
-    ports:
-      - 27017:27017
-    restart: unless-stopped

@@ -23,7 +23,15 @@ const groupSchema = new mongoose.Schema({
 });
 
 async function main() {
-  await mongoose.connect('mongodb://localhost:27017/Todo-DB');
+  console.log('connecting to mongodb');
+  await mongoose.connect('mongodb://mongodb:27017', {
+    'user': 'dbuser',
+    'pass': 'thisissecret',
+    'authSource': 'Todo',
+    'dbName': 'Todo',
+    'autoCreate': true,
+  });
+  console.log('connected to mongodb');
   task = mongoose.model('Task', taskSchema);
   group = mongoose.model('Group', groupSchema);
 }
@@ -36,7 +44,11 @@ app.get('/', async function (req, res) {
 });
 // get all groups with their tasks
 app.get('/todos', async function (req, res) {
-  res.send((await group.find().populate('tasks')).reverse());
+  try {
+    res.send((await group.find().populate('tasks')).reverse());
+  } catch {
+    res.send([]);
+  }
 });
 //#endregion get
 //#region put
@@ -134,7 +146,7 @@ app.delete('/removeGroup', async (req, res) => {
 });
 //#endregion delete
 
-const expressServer = app.listen(3000);
+const expressServer = app.listen(3000, '0.0.0.0');
 
 process.on('SIGTERM', () => {
   expressServer.close(() => { debug('HTTP server closed') });

@@ -75,13 +75,13 @@ export class TodoDataService {
 
   public removeGroup(groupId: string) {
     firstValueFrom(this.http.delete<any>(environment.backendUrl + `/removeGroup?id=${groupId}`))
-    .then(() => {
-      const existingData = this.data.value;
-      const groupIndex = existingData.findIndex(x => x._id === groupId);
-      existingData.splice(groupIndex, 1);
-      this.data.next(existingData);
-    })
-    .catch(err => console.error(err));
+      .then(() => {
+        const existingData = this.data.value;
+        const groupIndex = existingData.findIndex(x => x._id === groupId);
+        existingData.splice(groupIndex, 1);
+        this.data.next(existingData);
+      })
+      .catch(err => console.error(err));
   }
 
   private getTodos() {
